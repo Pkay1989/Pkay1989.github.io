@@ -1943,14 +1943,17 @@ CM.Disp.AddMenuStats = function(title) {
 
 CM.startAutomation = function() {
 	
-	if(automationActive) return;
+	if(automationActive) {
+		console.log('Automation already active!');
+		return;
+	}
 	
 	setInterval(function() {		
 		for (var i in Game.shimmers) {
 			Game.shimmers[i].pop();
 		}
 
-		if (Game.hasBuff('Click frenzy')||Game.hasBuff('Dragonflight')) {
+		if (Game.hasBuff('Click frenzy')||Game.hasBuff('Dragonflight')||Game.hasBuff('Cursed fingers')||Game.hasBuff('Elder frenzy')) {
 			Game.ClickCookie();
 		}
 		
