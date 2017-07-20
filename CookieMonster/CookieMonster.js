@@ -1819,7 +1819,7 @@ CM.Disp.AddMenuStats = function(title) {
 			popAllA.className = 'option';
 			popAllA.onclick = function() { CM.Disp.CollectWrinklers(); };
 			popAllFrag.appendChild(popAllA);
-			stats.appendChild(listing('Rewards of Popping',  popAllFrag));
+			stats.appendChild(listing('Rewardsasdasdasd of Popping',  popAllFrag));
 		}
 	}
 	
