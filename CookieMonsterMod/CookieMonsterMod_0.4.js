@@ -351,6 +351,7 @@ CM.Cache.ClicksDiff;
 CM.Cache.AvgCPS = -1;
 CM.Cache.AvgCPSChoEgg = -1;
 CM.Cache.AvgClicks = -1;
+var automationActive = false;
 
 /**********
  * Config *
@@ -1647,19 +1648,11 @@ CM.Disp.AddMenuStats = function(title) {
 	
 	stats.appendChild(header('Automation', 'Automation'));
 	var agc = document.createDocumentFragment();
-	agc.appendChild(document.createTextNode('Auto-click golden cookies' + ' '));
 	var agcc = document.createElement('a');
+	agcc.textContent = 'Auto-click golden cookies';
 	agcc.className = 'option';
-	agcc.onclick = setInterval(function() {
-		for (var i in Game.shimmers) {
-			Game.shimmers[i].pop();
-		}
-
-		if (Game.hasBuff('Click frenzy')||Game.hasBuff('Dragonflight')) {
-			Game.ClickCookie();
-		}
-		sender.disabled = true;
-	}, 100)
+	agcc.onclick = CM.startAutomation();
+	agcc.disabled = (automationActive==true);
 	agc.appendChild(agcc);
 	stats.appendChild(listing('Auto-click golden cookies', agc));
 	
@@ -1946,6 +1939,23 @@ CM.Disp.AddMenuStats = function(title) {
 	}
 
 	l('menu').insertBefore(stats, l('menu').childNodes[2]);
+}
+
+CM.startAutomation = function() {
+	
+	if(automationActive) return;
+	
+	setInterval(function() {		
+		for (var i in Game.shimmers) {
+			Game.shimmers[i].pop();
+		}
+
+		if (Game.hasBuff('Click frenzy')||Game.hasBuff('Dragonflight')) {
+			Game.ClickCookie();
+		}
+		
+		automationActive = true;
+	}, 100)
 }
 
 CM.Disp.AddMenu = function() {
