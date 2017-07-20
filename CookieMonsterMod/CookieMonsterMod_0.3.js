@@ -1649,7 +1649,6 @@ CM.Disp.AddMenuStats = function(title) {
 	var agc = document.createDocumentFragment();
 	agc.appendChild(document.createTextNode('Auto-click golden cookies' + ' '));
 	var agcc = document.createElement('a');
-	agcc.textContent = 'Auto-click golden cookies';
 	agcc.className = 'option';
 	agcc.onclick = setInterval(function() {
 		for (var i in Game.shimmers) {
@@ -1659,10 +1658,10 @@ CM.Disp.AddMenuStats = function(title) {
 		if (Game.hasBuff('Click frenzy')||Game.hasBuff('Dragonflight')) {
 			Game.ClickCookie();
 		}
-		agcc.disabled = true;
+		sender.disabled = true;
 	}, 100)
 	agc.appendChild(agcc);
-	stats.appendChild(agc);
+	stats.appendChild(listing('Auto-click golden cookies', agc));
 	
 	stats.appendChild(header('Lucky Cookies', 'Lucky'));
 	if (CM.Config.StatsPref.Lucky) {
