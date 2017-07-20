@@ -1819,7 +1819,7 @@ CM.Disp.AddMenuStats = function(title) {
 			popAllA.className = 'option';
 			popAllA.onclick = function() { CM.Disp.CollectWrinklers(); };
 			popAllFrag.appendChild(popAllA);
-			stats.appendChild(listing('Rewardsasdasdasd of Popping',  popAllFrag));
+			stats.appendChild(listing('Rewards of Popping',  popAllFrag));
 		}
 	}
 	
@@ -1840,6 +1840,7 @@ CM.Disp.AddMenuStats = function(title) {
 		}
 	}, 100)
 	agc.appendChild(agcc);
+	stats.appendChild(listing('Automate golden cookies',  agc));
 	
 	var specDisp = false;
 	var halloCook = [];
