@@ -1645,6 +1645,25 @@ CM.Disp.AddMenuStats = function(title) {
 		return frag;
 	}
 	
+	stats.appendChild(header('Automation', 'Automation'));
+	var agc = document.createDocumentFragment();
+	agc.appendChild(document.createTextNode('Auto-click golden cookies' + ' '));
+	var agcc = document.createElement('a');
+	agcc.textContent = 'Auto-click golden cookies';
+	agcc.className = 'option';
+	agcc.onclick = setInterval(function() {
+		for (var i in Game.shimmers) {
+			Game.shimmers[i].pop();
+		}
+
+		if (Game.hasBuff('Click frenzy')||Game.hasBuff('Dragonflight')) {
+			Game.ClickCookie();
+		}
+		agcc.disabled = true;
+	}, 100)
+	agc.appendChild(agcc);
+	stats.appendChild(agc);
+	
 	stats.appendChild(header('Lucky Cookies', 'Lucky'));
 	if (CM.Config.StatsPref.Lucky) {
 		var luckyColor = ((Game.cookies + CM.Disp.GetWrinkConfigBank()) < CM.Cache.Lucky) ? CM.Disp.colorRed : CM.Disp.colorGreen;
@@ -1822,25 +1841,6 @@ CM.Disp.AddMenuStats = function(title) {
 			stats.appendChild(listing('Rewards of Popping',  popAllFrag));
 		}
 	}
-	
-	var agc = document.createDocumentFragment();
-	agc.appendChild(document.createTextNode('Auto-click golden cookies' + ' '));
-	var agcc = document.createElement('a');
-	agcc.textContent = 'Automate golden cookies';
-	agcc.className = 'option';
-	agcc.onclick = setInterval(function() {
-		
-		for (var i in Game.shimmers) {
-			Game.shimmers[i].wrath=0;
-			Game.shimmers[i].pop();
-		}
-
-		if (Game.hasBuff('Click frenzy')||Game.hasBuff('Dragonflight')) {
-			Game.ClickCookie();
-		}
-	}, 100)
-	agc.appendChild(agcc);
-	stats.appendChild(listing('Automate golden cookies',  agc));
 	
 	var specDisp = false;
 	var halloCook = [];
